@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></script>
+<style>
+    body {
+    background-color:lightgrey;
+}
+
+ 
+h1,h4 {
+    color: black;
+    text-align: center;
+	
+}
+
+div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}	
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.img img {
+    width: 100%;
+    height: auto;
+}
+    
+
+    table {
+    border-collapse: collapse;
+    width: 100%;
+        
+
+}
+    .wrapper {
+    text-align: center;
+   }
+
+   .button {
+    position: absolute;
+    top: 50%; 
+   }
+
+   th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+     border: 1px solid black;
+  }
+  
+
+</style>
+    
+<script>
+    var getFoodInfo = function(){    
+        $.get("/getdata", function(data, status){
+         var i = 0;
+        var tb = "";
+        for(i = 0; i < data.length; i++){
+            tb += "<tr><td>" + data[i].emp_id+ "</td><td>" + data[i].nameofitem + "</td><td>" + data[i].costofitem + "</td></tr>" ;
+        }
+        
+        document.getElementById("overviewTableBody").innerHTML = tb;
+    });
+};
+
+    $(document).ready(function(){
+        $('#overviewTable').DataTable({
+        "bserverside":false,
+       // "ajax": "data.json",
+ //"dataSrc": "tableData",
+        bJQueryUI: true,
+        sPaginationType: "full_numbers",
+        "scrollY":"300px",
+        "scrollCollapse": true,
+    });
+    });
+                
+    </script>
+
+</head>
+
+<body  onload="getFoodInfo()">
+ 
+<h1>CANTEEN</h1>
+
+
+<div class = "wrapper">
+      
+    <button  id="button2"  align="center" type="button" class="btn btn-default" onclick="window.location='home'">
+                <span class="glyphicon glyphicon-home"> Home </span>
+    </button>
+            
+    <button id="button2" align="center"  type="button" class="btn btn-default" onclick="window.location='infoentry'">
+                <span class="glyphicon glyphicon-plus"> InformationEntry </span> 
+    </button >
+            
+    <button  id="button2" align="center" type="button" class="btn btn-default" onclick="window.location='search'">
+                <span class="glyphicon glyphicon-search"> Search  </span>
+    </button>
+            
+    <button  id="button2" align="center" type="button" class="btn btn-default" onclick="window.location='overview'">
+                <span class="glyphicon glyphicon-zoom-in"> overview  </span>
+    </button>
+    
+   
+</div>
+<br>
+
+    <div  class="container">
+        
+    <table id="overviewTable" class="display"  width="100%">
+        <thead >
+            <tr>
+                <th> Employee Id</th>
+                <th>Name of Item</th>
+                <th>Cost of Item</th>
+            </tr>
+        </thead>
+        <tbody id="overviewTableBody">
+
+        </tbody>
+
+     </table>
+    
+ </div>
+    
+ </body>
+
+</html>

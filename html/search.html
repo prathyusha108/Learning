@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="/js1/overview.js"></script>
+        <script src="/html/overview.html"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="html/searchinfo.html"></script>
+       
+        <link type="text/css" href="//code.jquery.com/ui/1.11.2/themes/start/jquery-ui.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/ui.enhanced-alert.js"></script>
+        <link type="text/css" href="css/ui-enhanced-alert.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: lightgrey;
+    }   
+
+    h1 {
+        color: black;
+        text-align: center;
+    }
+    .wrapper {
+        text-align: center;
+    }
+
+    .button {
+        position: absolute;
+        top: 50%;
+    }
+      .ea {
+        height: 32px;
+        width: 32px;
+        float: left;
+    }
+
+    .ea.alert { background: url(img/Info_Box_Blue.png); }
+
+    .ea.info { background: url(img/Warning.png); }
+</style>
+
+<script type="text/javascript">
+    function validate1(){
+             var v = document.getElementById("ip").value;
+            if(v.length == 0 || v=="" || v==null)
+                {
+                     $.ea.alert("Invalid Input",'Warning');
+                    //alert("Invalid input,Enter correctly")
+                }
+            window.location= "/searchinfo?value="+v;
+            }
+</script>
+    
+</head>
+
+<body>
+
+<h1>CANTEEN</h1>
+    <div class="wrapper">
+      
+        <button  id="button2"  align="center" type="button" class="btn btn-default" onclick="window.location='home'">
+        <span class="glyphicon glyphicon-home"> Home </span>
+        </button>
+        
+        <button id="button2" align="center"  type="button" class="btn btn-default" onclick="window.location='infoentry'">
+        <span class="glyphicon glyphicon-plus"> InformationEntry </span> 
+        </button >
+            
+        <button  id="button2" align="center" type="button" class="btn btn-default" onclick="window.location='search'">
+        <span class="glyphicon glyphicon-search"> Search  </span>
+        </button>
+        
+        <button  id="button2" align="center" type="button" class="btn btn-default" onclick="window.location='overview'">
+        <span class="glyphicon glyphicon-zoom-in"> overview  </span>
+        </button>
+          
+    </div>
+<br>
+<br>
+
+<form  action ="searchinfo.html" method="get">
+<div class = "container">
+    <table align = "center">
+        <tbody>
+            <tr>
+	           <td>Employe Id:</td>
+	           <td><input type="text"  id = "ip" name = " empId" value = "" class = "txtfield"></td>
+	       </tr>
+            <br>
+            
+            <tr>
+                <td></td>
+                <td> <button type="button" onclick ="validate1()" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span><b> Search</b></button></td>	
+            </tr>
+            <br>
+        </tbody>
+        </table>
+</div>
+    
+</form>
+    
+</body>
+    
+</html>

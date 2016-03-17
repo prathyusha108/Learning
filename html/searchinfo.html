@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="/js1/overview.js"></script>
+    <script src="/html/search.html"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   
+
+    
+<style>
+    body {
+    background-color:lightgrey;
+}
+
+ 
+h1,h4 {
+    color: black;
+    text-align: center;
+	
+}
+</style>
+   
+   <script>
+       
+       function fun() {
+            var path = location.search;
+            var a = path.split("=");
+            var value = a[1];
+            var url = "/searchData?emp_id="+value;
+            $.get(url, function(data,status){  //function (data, status)
+            var i = 0;
+            var data=data[0];
+            var tb = "";
+        tb += "<tr><td>" + data.emp_id+ "</td><td>" + data.nameofitem + "</td><td>" + data.costofiem + "</td></tr>" ;
+            alert("Data posted successfully");
+          document.getElementById("searchTableBody").innerHTML = tb;
+        });
+    }
+</script>
+
+    </head>
+
+<body  onload="fun()">
+ 
+    <h1>CANTEEN</h1>
+    
+    <br>
+    <br>
+    <br>
+
+    <h4 style="text-align:center">Customer information</h4>
+    
+    <br>
+    <br>
+    <br>
+    
+    <div  class="container">
+        
+    <table id="searchTable" class="display"  width="100%">
+        <thead >
+            <tr>
+                <th>Employee Id</th>
+                <th>Name of Item</th>
+                <th>Cost of Item</th>
+            </tr>
+        </thead>
+        <tbody id="searchTableBody">
+        
+        </tbody>
+        
+        </table>
+        
+    </div>
+    
+ </body>
+
+</html>
